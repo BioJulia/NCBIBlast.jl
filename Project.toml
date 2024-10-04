@@ -1,0 +1,7 @@
+name = "NCBIBlast"
+uuid = "dcaf3faf-48b5-45a7-abb1-fcfd75344536"
+authors = ["Kevin Bonham <kevin@bonham.ch> and contributors"]
+version = "1.0.0-DEV"
+
+[compat]
+julia = "1.10"
