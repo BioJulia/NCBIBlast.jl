@@ -2,5 +2,7 @@ using NCBIBlast
 using Test
 
 @testset "NCBIBlast.jl" begin
-    # Write your tests here.
+    @test blastn(; h=true) isa Base.Process
+    @test blastp(; h=true) isa Base.Process
+    @test makeblastdb(; h=true) isa Base.Process
 end
