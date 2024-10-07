@@ -5,3 +5,4 @@
 /docs/Manifest.toml
 /docs/build/
 .CondaPkg
+test/example_files/dna2.fasta.*
