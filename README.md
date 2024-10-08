@@ -30,103 +30,28 @@ Adding sequences from FASTA; added 2 sequences in 0.00329995 seconds.
 
 Process(`makeblastdb -in test/example_files/dna2.fasta -dbtype nucl`, ProcessExited(0))
 
-julia> julia> (tmp_path, tmp_io)  = mktemp()
-("/tmp/jl_w9A5Xd", IOStream(<fd 26>))
+julia> buf = IOBuffer("TTACCTGCCGTGAGTAAATTAAAATTTTATTGACTTAG")
+IOBuffer(data=UInt8[...], readable=true, writable=false, seekable=true, append=false, size=38, maxsize=Inf, ptr=1, mark=-1)
 
-julia> println(tmp_io, ">testseq"); println(tmp_io, "CTGCGTGTTGCCGATATTCTGGAAAGCA");
+julia> blastn(buf; db="test/example_files/dna2.fasta", outfmt="6")
+Query_1 Test1   100.000 38      0       0       1       38      82      119     5.64e-18        71.3
+Process(`blastn -db test/example_files/dna2.fasta -outfmt 6`, ProcessExited(0))
 
-julia> println(tmp_io, ">testseq2"); println(tmp_io, "CTGCGTGTTGCCGATATTCTGGCGCA");
+julia> using CSV, DataFrames
 
-julia> flush(tmp_io)
+julia> io = IOBuffer();
 
-julia> blastn(; query=tmp_path, db="test/example_files/dna2.fasta")
-BLASTN 2.16.0+
+julia> blastn(buf; stdout=io, db="test/example_files/dna2.fasta", outfmt="6");
 
+julia> seek(io, 0);
 
-Reference: Zheng Zhang, Scott Schwartz, Lukas Wagner, and Webb
-Miller (2000), "A greedy algorithm for aligning DNA sequences", J
-Comput Biol 2000; 7(1-2):203-14.
+julia> CSV.read(io, DataFrame; header=false)
+1×12 DataFrame
+ Row │ Column1  Column2  Column3  Column4  Column5  Column6  Column7  Column8  Column9  Column10  Column11  Column12
+     │ String7  String7  Float64  Int64    Int64    Int64    Int64    Int64    Int64    Int64     Float64   Float64
+─────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   1 │ Query_1  Test1      100.0       38        0        0        1       38       82       119  5.64e-18      71.3
 
-
-
-Database: test/example_files/dna2.fasta
-           2 sequences; 560 total letters
-
-
-
-Query= testseq
-
-Length=28
-                                                                      Score     E
-Sequences producing significant alignments:                          (Bits)  Value
-
-Test2                                                                 52.8    1e-12
-
-
->Test2
-Length=280
-
- Score = 52.8 bits (28),  Expect = 1e-12
- Identities = 28/28 (100%), Gaps = 0/28 (0%)
- Strand=Plus/Plus
-
-Query  1    CTGCGTGTTGCCGATATTCTGGAAAGCA  28
-            ||||||||||||||||||||||||||||
-Sbjct  108  CTGCGTGTTGCCGATATTCTGGAAAGCA  135
-
-
-
-Lambda      K        H
-    1.33    0.621     1.12
-
-Gapped
-Lambda      K        H
-    1.28    0.460    0.850
-
-Effective search space used: 11466
-
-
-Query= testseq
-
-Length=28
-                                                                      Score     E
-Sequences producing significant alignments:                          (Bits)  Value
-
-Test2                                                                 52.8    1e-12
-
-
->Test2
-Length=280
-
- Score = 52.8 bits (28),  Expect = 1e-12
- Identities = 28/28 (100%), Gaps = 0/28 (0%)
- Strand=Plus/Plus
-
-Query  1    CTGCGTGTTGCCGATATTCTGGAAAGCA  28
-            ||||||||||||||||||||||||||||
-Sbjct  108  CTGCGTGTTGCCGATATTCTGGAAAGCA  135
-
-
-
-Lambda      K        H
-    1.33    0.621     1.12
-
-Gapped
-Lambda      K        H
-    1.28    0.460    0.850
-
-Effective search space used: 11466
-
-
-  Database: test/example_files/dna2.fasta
-    Posted date:  Oct 7, 2024  4:59 PM
-  Number of letters in database: 560
-  Number of sequences in database:  2
-
-
-
-Matrix: blastn matrix 1 -2
-Gap Penalties: Existence: 0, Extension: 2.5
 ```
 
 

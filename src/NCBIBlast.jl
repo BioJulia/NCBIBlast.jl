@@ -22,12 +22,24 @@ function add_cli_kwargs!(cmd, kwargs)
     return cmd
 end
 
+
 """
-    blastn(; kwargs...)
+    blastn([input]; stdout, kwargs...)
 
 Run `blastn` with passed kwargs.
 Use `arg=true` to pass flags
 (eg `ungapped=true` will pass `-ungapped`).
+
+Optionally, provide an input that will be provided
+as `stdin` (a file string, or `IO` type).
+
+To print results to somewhere other than `stdout`,
+use eg `stdout="results.txt"`.
+
+## Examples
+
+- `blastn(; query="my_file.fasta", db=some_database, outfmt)`
+- `blastn(IOBuffer("GATACA"); db="nr", remote=true)`
 
 
 ```
@@ -68,19 +80,29 @@ DESCRIPTION
 Use '-help' to print detailed descriptions of command line arguments
 ```
 """
-function blastn(; kwargs...)
+function blastn(stdin = nothing; stdout=stdout, kwargs...)
     cmd = ["blastn"]
     add_cli_kwargs!(cmd, kwargs)
     CondaPkg.withenv() do
-        run(Cmd(cmd))
+        run(pipeline(Cmd(cmd); stdout, stdin))
     end
 end
 
-""" blastp(; kwargs...)
+
+
+"""
+blastp([input]; stdout, kwargs...)
 
 Run `blastp` with passed kwargs.
 Use `arg=true` to pass flags
 (eg `lcase_masking=true` will pass `-lcase_masking`).
+
+Optionally, provide an input that will be provided
+as `stdin` (a file string, or `IO` type).
+
+To print results to somewhere other than `stdout`,
+use eg `stdout="results.txt"`.
+
 
 ```
 julia> blastp(; h=true)
@@ -114,20 +136,27 @@ DESCRIPTION
    Protein-Protein BLAST 2.16.0+
 ```
 """
-function blastp(; kwargs...)
+function blastp(stdin = nothing; stdout=stdout, kwargs...)
     cmd = ["blastp"]
     add_cli_kwargs!(cmd, kwargs)
     CondaPkg.withenv() do
-        run(Cmd(cmd))
+        run(Cmd(cmd); stdout, stdin)
     end
 end
 
 """
-    blastx(; kwargs...)
+    blastx([input]; stdout, kwargs...)
 
 Run `blastx` with passed kwargs.
 Use `arg=true` to pass flags
 (eg `lcase_masking=true` will pass `-lcase_masking`).
+
+
+Optionally, provide an input that will be provided
+as `stdin` (a file string, or `IO` type).
+
+To print results to somewhere other than `stdout`,
+use eg `stdout="results.txt"`.
 
 ```
 julia> blastx(; h=true)
@@ -165,21 +194,28 @@ DESCRIPTION
 Use '-help' to print detailed descriptions of command line arguments
 ```
 """
-function blastx(; kwargs...)
+function blastx(stdin = nothing; stdout=stdout, kwargs...)
     cmd = ["blastx"]
     add_cli_kwargs!(cmd, kwargs)
     CondaPkg.withenv() do
-        run(Cmd(cmd))
+        run(Cmd(cmd); stdin, stdout)
     end
 end
 
 
 """
-    tblastn(; kwargs...)
+    tblastn([input]; stdout, kwargs...)
 
 Run `tblastn` with passed kwargs.
 Use `arg=true` to pass flags
 (eg `lcase_masking=true` will pass `-lcase_masking`).
+
+Optionally, provide an input that will be provided
+as `stdin` (a file string, or `IO` type).
+
+To print results to somewhere other than `stdout`,
+use eg `stdout="results.txt"`.
+
 
 ```
 julia> tblastn(; h=true)
@@ -217,11 +253,11 @@ DESCRIPTION
 Use '-help' to print detailed descriptions of command line arguments
 ```
 """
-function tblastn(; kwargs...)
+function tblastn(stdin = nothing; stdout=stdout, kwargs...)
     cmd = ["tblastn"]
     add_cli_kwargs!(cmd, kwargs)
     CondaPkg.withenv() do
-        run(Cmd(cmd))
+        run(Cmd(cmd); stdout, stdin)
     end
 end
 
