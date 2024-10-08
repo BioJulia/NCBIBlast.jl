@@ -29,7 +29,7 @@ For example,
 the julia call 
 
 ```julia
-blastn(; query = "a_file.txt", db="mydb", -out="results.txt")
+blastn(; query = "a_file.txt", db="mydb", out="results.txt")
 ```
 
 Will be sent to the shell as
