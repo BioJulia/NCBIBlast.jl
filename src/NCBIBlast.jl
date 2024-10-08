@@ -140,7 +140,7 @@ function blastp(stdin = nothing; stdout=stdout, kwargs...)
     cmd = ["blastp"]
     add_cli_kwargs!(cmd, kwargs)
     CondaPkg.withenv() do
-        run(Cmd(cmd); stdout, stdin)
+        run(pipeline(Cmd(cmd); stdout, stdin))
     end
 end
 
@@ -198,7 +198,7 @@ function blastx(stdin = nothing; stdout=stdout, kwargs...)
     cmd = ["blastx"]
     add_cli_kwargs!(cmd, kwargs)
     CondaPkg.withenv() do
-        run(Cmd(cmd); stdin, stdout)
+        run(pipeline(Cmd(cmd); stdin, stdout))
     end
 end
 
@@ -257,7 +257,7 @@ function tblastn(stdin = nothing; stdout=stdout, kwargs...)
     cmd = ["tblastn"]
     add_cli_kwargs!(cmd, kwargs)
     CondaPkg.withenv() do
-        run(Cmd(cmd); stdout, stdin)
+        run(pipeline(Cmd(cmd); stdout, stdin))
     end
 end
 
