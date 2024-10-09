@@ -8,14 +8,17 @@ export blastn,
 
 using CondaPkg
 
-function add_cli_kwargs!(cmd, kwargs)
+function add_cli_kwargs!(cmd::Vector{String}, kwargs)
     for (key,val) in pairs(kwargs)
         if val isa Bool
             val && push!(cmd, string("-", key))
-        elseif val isa AbstractVector
-            append!(cmd, [string("-", key), string.(val)...])
         else
-            append!(cmd, [string("-", key), string(val)])
+            push!(cmd, string("-", key))
+            if val isa AbstractVector
+                append!(cmd, map(string, val))
+            else
+                push!(cmd, string(val))
+            end
         end
     end
 
