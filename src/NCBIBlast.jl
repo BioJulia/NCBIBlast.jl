@@ -7,7 +7,6 @@ export blastn,
        tblastx,
        makeblastdb
 
-using CondaPkg
 using Artifacts: @artifact_str
 
 const BLAST_VERSION = "2.16.0"
