@@ -1,8 +1,3 @@
-using Pkg
-Pkg.activate(@__DIR__)
-
-##
-
 using Pkg: BinaryPlatforms
 using ArtifactUtils: add_artifact!
 
