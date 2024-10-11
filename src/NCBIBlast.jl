@@ -8,6 +8,17 @@ export blastn,
        makeblastdb
 
 using CondaPkg
+using Artifacts: @artifact_str
+
+const BLAST_VERSION = "2.16.0"
+const BIN_PATH = joinpath(artifact"ncbi-blast", "ncbi-blast-$(BLAST_VERSION)+", "bin")
+
+_blastn_exe() = joinpath(BIN_PATH, "blastn")
+_blastx_exe() = joinpath(BIN_PATH, "blastx")
+_blastp_exe() = joinpath(BIN_PATH, "blastp")
+_tblastn_exe() = joinpath(BIN_PATH, "tblastn")
+_tblastx_exe() = joinpath(BIN_PATH, "tblastx")
+_makeblastdb_exe() = joinpath(BIN_PATH, "makeblastdb")
 
 function add_cli_kwargs!(cmd::Vector{String}, kwargs)
     for (key,val) in pairs(kwargs)
@@ -85,11 +96,9 @@ Use '-help' to print detailed descriptions of command line arguments
 ```
 """
 function blastn(stdin = nothing; stdout=stdout, kwargs...)
-    cmd = ["blastn"]
+    cmd = [_blastn_exe()]
     add_cli_kwargs!(cmd, kwargs)
-    CondaPkg.withenv() do
-        run(pipeline(Cmd(cmd); stdout, stdin))
-    end
+    run(pipeline(Cmd(cmd); stdout, stdin))
 end
 
 
@@ -141,11 +150,9 @@ DESCRIPTION
 ```
 """
 function blastp(stdin = nothing; stdout=stdout, kwargs...)
-    cmd = ["blastp"]
+    cmd = [_blastp_exe()]
     add_cli_kwargs!(cmd, kwargs)
-    CondaPkg.withenv() do
-        run(pipeline(Cmd(cmd); stdout, stdin))
-    end
+    run(pipeline(Cmd(cmd); stdout, stdin))
 end
 
 """
@@ -199,11 +206,9 @@ Use '-help' to print detailed descriptions of command line arguments
 ```
 """
 function blastx(stdin = nothing; stdout=stdout, kwargs...)
-    cmd = ["blastx"]
+    cmd = [_blastx_exe()]
     add_cli_kwargs!(cmd, kwargs)
-    CondaPkg.withenv() do
-        run(pipeline(Cmd(cmd); stdin, stdout))
-    end
+    run(pipeline(Cmd(cmd); stdin, stdout))
 end
 
 
@@ -258,11 +263,9 @@ Use '-help' to print detailed descriptions of command line arguments
 ```
 """
 function tblastn(stdin = nothing; stdout=stdout, kwargs...)
-    cmd = ["tblastn"]
+    cmd = [_tblastn_exe()]
     add_cli_kwargs!(cmd, kwargs)
-    CondaPkg.withenv() do
-        run(pipeline(Cmd(cmd); stdout, stdin))
-    end
+    run(pipeline(Cmd(cmd); stdout, stdin))
 end
 
 """
@@ -311,11 +314,9 @@ Use '-help' to print detailed descriptions of command line arguments
 ```
 """
 function tblastx(stdin = nothing; stdout=stdout, kwargs...)
-    cmd = ["tblastx"]
+    cmd = [_tblastx_exe()]
     add_cli_kwargs!(cmd, kwargs)
-    CondaPkg.withenv() do
-        run(pipeline(Cmd(cmd); stdout, stdin))
-    end
+    run(pipeline(Cmd(cmd); stdout, stdin))
 end
 
 
@@ -345,11 +346,9 @@ Use '-help' to print detailed descriptions of command line arguments
 ```
 """
 function makeblastdb(; kwargs...)
-    cmd = ["makeblastdb"]
+    cmd = [_makeblastdb_exe()]
     add_cli_kwargs!(cmd, kwargs)
-    CondaPkg.withenv() do
-        run(Cmd(cmd))
-    end
+    run(Cmd(cmd))
 end
 
 end
