@@ -1,0 +1,42 @@
+[[ncbi-blast]]
+arch = "aarch64"
+git-tree-sha1 = "0406b91031ce302fa9117606d007d04635279fef"
+os = "macos"
+
+    [[ncbi-blast.download]]
+    sha256 = "e8da4f34b0421da051b1c2d9e5f8e1e43bf76e38cf9361a1dbe2fbc44b6224db"
+    url = "https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.16.0/ncbi-blast-2.16.0+-aarch64-macosx.tar.gz"
+[[ncbi-blast]]
+arch = "x86_64"
+git-tree-sha1 = "690abc170201bc029d0e7386da0791d7a76d98ff"
+os = "macos"
+
+    [[ncbi-blast.download]]
+    sha256 = "7eee1e7720f5daaf06e39d9c92b125d9072de7eb81f499c005dedb08b932324c"
+    url = "https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.16.0/ncbi-blast-2.16.0+-x64-macosx.tar.gz"
+[[ncbi-blast]]
+arch = "aarch64"
+git-tree-sha1 = "39394a0d1959ae677fde91f3148e1a6bc94f11eb"
+libc = "glibc"
+os = "linux"
+
+    [[ncbi-blast.download]]
+    sha256 = "d447a232ed3c47d1a5abca91932e0e4d3e6540f2c970cee26aa52b994392e0c2"
+    url = "https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.16.0/ncbi-blast-2.16.0+-aarch64-linux.tar.gz"
+[[ncbi-blast]]
+arch = "x86_64"
+git-tree-sha1 = "401cfe44557a4063e16671896f0834e2648b67af"
+libc = "glibc"
+os = "linux"
+
+    [[ncbi-blast.download]]
+    sha256 = "b0b13098c901d23b324ad1700e7471bb7408a7f7f517d74d5faad711be76e8f4"
+    url = "https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.16.0/ncbi-blast-2.16.0+-x64-linux.tar.gz"
+[[ncbi-blast]]
+arch = "x86_64"
+git-tree-sha1 = "f8f04f978f874b0a2a50ba3ebcfe97f29eaa740d"
+os = "windows"
+
+    [[ncbi-blast.download]]
+    sha256 = "3b6f27a72e9a875f1c02119704775a8e04ae97b5e4a148b560f9be9acd39e943"
+    url = "https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.16.0/ncbi-blast-2.16.0+-x64-win64.tar.gz"
