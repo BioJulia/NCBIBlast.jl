@@ -7,7 +7,7 @@ export blastn,
        tblastx,
        makeblastdb
 
-using Artifacts: @artifact_str
+using Pkg.Artifacts: @artifact_str
 
 const BLAST_VERSION = "2.16.0"
 const BIN_PATH = joinpath(artifact"ncbi-blast", "ncbi-blast-$(BLAST_VERSION)+", "bin")
