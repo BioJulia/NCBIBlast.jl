@@ -1,11 +1,11 @@
 name = "NCBIBlast"
 uuid = "dcaf3faf-48b5-45a7-abb1-fcfd75344536"
 authors = ["Kevin Bonham <kevin@bonham.ch> and contributors"]
-version = "0.1.0"
+version = "0.2.0"
 
 [deps]
-CondaPkg = "992eb4ea-22a4-4c89-a5bb-47a3300528ab"
+Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 
 [compat]
-CondaPkg = "0.2.23"
+Pkg = "1.10.0"
 julia = "1.10"

@@ -6,3 +6,5 @@
 /docs/build/
 .CondaPkg
 test/example_files/dna2.fasta.*
+.DS_Store
+Manifest*
