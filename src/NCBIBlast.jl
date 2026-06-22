@@ -9,7 +9,7 @@ export blastn,
 
 using Pkg.Artifacts: @artifact_str
 
-const BLAST_VERSION = "2.16.0"
+const BLAST_VERSION = "2.17.0"
 const BIN_PATH = joinpath(artifact"ncbi-blast", "ncbi-blast-$(BLAST_VERSION)+", "bin")
 
 _blastn_exe() = joinpath(BIN_PATH, "blastn")
@@ -89,7 +89,7 @@ USAGE
     [-num_threads int_value] [-mt_mode int_value] [-remote] [-version]
 
 DESCRIPTION
-   Nucleotide-Nucleotide BLAST 2.16.0+
+   Nucleotide-Nucleotide BLAST 2.17.0+
 
 Use '-help' to print detailed descriptions of command line arguments
 ```
@@ -145,7 +145,7 @@ USAGE
     [-comp_based_stats compo] [-use_sw_tback] [-version]
 
 DESCRIPTION
-   Protein-Protein BLAST 2.16.0+
+   Protein-Protein BLAST 2.17.0+
 ```
 """
 function blastp(stdin = nothing; stdout=stdout, kwargs...)
@@ -199,7 +199,7 @@ USAGE
     [-comp_based_stats compo] [-use_sw_tback] [-version]
 
 DESCRIPTION
-   Translated Query-Protein Subject BLAST 2.16.0+
+   Translated Query-Protein Subject BLAST 2.17.0+
 
 Use '-help' to print detailed descriptions of command line arguments
 ```
@@ -256,7 +256,7 @@ USAGE
     [-version]
 
 DESCRIPTION
-   Protein Query-Translated Subject BLAST 2.16.0+
+   Protein Query-Translated Subject BLAST 2.17.0+
 
 Use '-help' to print detailed descriptions of command line arguments
 ```
@@ -307,7 +307,7 @@ USAGE
     [-num_threads int_value] [-remote] [-version]
 
 DESCRIPTION
-   Translated Query-Translated Subject BLAST 2.16.0+
+   Translated Query-Translated Subject BLAST 2.17.0+
 
 Use '-help' to print detailed descriptions of command line arguments
 ```
@@ -339,7 +339,7 @@ USAGE
     [-taxid_map TaxIDMapFile] [-oid_masks oid_masks] [-version]
 
 DESCRIPTION
-   Application to create BLAST databases, version 2.16.0+
+   Application to create BLAST databases, version 2.17.0+
 
 Use '-help' to print detailed descriptions of command line arguments
 ```
