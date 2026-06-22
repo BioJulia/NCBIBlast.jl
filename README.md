@@ -8,8 +8,6 @@ Basic Local Alignment Search Tool CLI,
 better known as BLAST,
 developed by the National Center for Biotechnology Information (NCBI).
 
-For now,
-this uses `CondaPkg.jl` to install BLAST+.
 
 ## Usage
 
